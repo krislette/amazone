@@ -60,12 +60,15 @@ document.querySelectorAll('.js-add-to-cart')
                 }
             });
 
+            const quantityElement = document.querySelector(`.js-quantity-selector-${productID}`);
+            const quantity = Number(quantityElement.value);
+
             if (matchingItem) {
-                matchingItem.quantity += 1;
+                matchingItem.quantity += quantity;
             } else {
                 cart.push({
                     productID,
-                    quantity: 1
+                    quantity
                 });
             }
 
@@ -78,9 +81,3 @@ document.querySelectorAll('.js-add-to-cart')
             document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
         });
     });
-
-const quantityElement = document.querySelector(`.js-quantity-selector-${product.id}`);
-
-if (matchingItem) {
-    matchingItem.quantity += 1;
-} // ... 
