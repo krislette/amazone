@@ -44,6 +44,8 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
+const addedMessageTimeouts = {}; // object that will contain the timeout ids of diff products
+
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
         button.addEventListener('click', () => {
@@ -83,5 +85,20 @@ document.querySelectorAll('.js-add-to-cart')
 
             const addedElement = document.querySelector(`.js-added-message-${productID}`);
             addedElement.classList.add('show-added-to-cart');
+            const previousTimeoutId = addedMessageTimeouts[productID];
+
+            // checks if there is a timeout id for this product
+            // if so, clear the timeout
+            if (previousTimeoutId) {
+                clearTimeout(previousTimeoutId);
+            }
+
+            const timeoutID = setTimeout(() => {
+                addedElement.classList.remove('show-added-to-cart');
+            }, 2000);
+
+            // adds the timeout id to the object
+            // so that we can clear it later
+            addedMessageTimeouts[productID] = timeoutID;
         });
     });
