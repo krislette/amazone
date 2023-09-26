@@ -435,4 +435,24 @@ const products = [{
     },
     priceCents: 2400,
     keywords: ["sweaters", "hoodies", "apparel", "mens"],
+},  {
+    id: "e4914e5a-8694-4db1-b865-2230ea7cf20c",
+    image: "images/products/backpack.jpg",
+    name: "Travel Backpack - Black",
+    rating: {
+        stars: 3.5,
+        count: 872,
+    },
+    priceCents: 1873,
+    keywords: ["backpacks", "bags", "unisex", "travel"],
+}, {
+    id: "ede77fac-5d34-4329-bc5e-5b9179e81fc3",
+    image: "images/products/umbrella.jpg",
+    name: "Compact and Windproof Rain Umbrella",
+    rating: {
+        stars: 4.5,
+        count: 58,
+    },
+    priceCents: 878,
+    keywords: ["umbrellas", "rain", "cheap", "travel"],
 }];
