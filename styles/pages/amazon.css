@@ -154,3 +154,10 @@
   padding: 8px;
   border-radius: 50px;
 }
+
+.show-added-to-cart {
+  /* This is the class that will be added to the
+     "Added to cart" message when the user clicks
+     the "Add to cart" button. */
+  opacity: 1;
+}

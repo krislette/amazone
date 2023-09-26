@@ -31,7 +31,7 @@ products.forEach((product) => {
                 </select>
             </div>
             <div class="product-spacer"></div>
-            <div class="added-to-cart">
+            <div class="added-to-cart js-added-message-${product.id}">
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
@@ -80,5 +80,8 @@ document.querySelectorAll('.js-add-to-cart')
             });
 
             document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+
+            const addedElement = document.querySelector(`.js-added-message-${productID}`);
+            addedElement.classList.add('show-added-to-cart');
         });
     });
