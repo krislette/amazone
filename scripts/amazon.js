@@ -51,6 +51,7 @@ document.querySelectorAll('.js-add-to-cart')
             // "data-" is another html attribute which sets an "id" to something on html
             // data-product-name turned into productName
             const productID = button.dataset.productId;
+            // const {productID} = button.dataset; --> destructuring if my variable name is the same as the data attribute 
             
             let matchingItem;
 
