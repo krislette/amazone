@@ -1,4 +1,5 @@
-import { cart } from "../data/cart.js"; // You can also import AS 
+import { cart, addToCart } from "../data/cart.js"; // You can also import AS 
+import { products } from "../data/products.js";
 
 let productsHTML = '';
 
@@ -46,7 +47,15 @@ products.forEach((product) => {
 
 document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-const addedMessageTimeouts = {}; // object that will contain the timeout ids of diff products
+function updateCartQuantity() {
+    let cartQuantity = 0;
+    
+    cart.forEach((cartItem) => {
+        cartQuantity += cartItem.quantity;
+    });
+    
+    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+}
 
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
@@ -54,53 +63,8 @@ document.querySelectorAll('.js-add-to-cart')
             // dataset retrieves all the data attribute that we put on the html
             // "data-" is another html attribute which sets an "id" to something on html
             // data-product-name turned into productName
-            const productID = button.dataset.productId;
-            // const {productID} = button.dataset; --> destructuring if my variable name is the same as the data attribute 
-            
-            let matchingItem;
-
-            cart.forEach((item) => {
-                if (productID === item.productID) {
-                    matchingItem = item;
-                }
-            });
-
-            const quantityElement = document.querySelector(`.js-quantity-selector-${productID}`);
-            const quantity = Number(quantityElement.value);
-
-            if (matchingItem) {
-                matchingItem.quantity += quantity;
-            } else {
-                cart.push({
-                    productID,
-                    quantity: 1
-                });
-            }
-
-            let cartQuantity = 0;
-
-            cart.forEach((item) => {
-                cartQuantity += item.quantity;
-            });
-
-            document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
-
-            const addedElement = document.querySelector(`.js-added-message-${productID}`);
-            addedElement.classList.add('show-added-to-cart');
-            const previousTimeoutId = addedMessageTimeouts[productID];
-
-            // checks if there is a timeout id for this product
-            // if so, clear the timeout
-            if (previousTimeoutId) {
-                clearTimeout(previousTimeoutId);
-            }
-
-            const timeoutID = setTimeout(() => {
-                addedElement.classList.remove('show-added-to-cart');
-            }, 2000);
-
-            // adds the timeout id to the object
-            // so that we can clear it later
-            addedMessageTimeouts[productID] = timeoutID;
+            const { productId } = button.dataset.productId;
+            addToCart(productId);
+            updateCartQuantity();
         });
     });
