@@ -1,3 +1,5 @@
+import { cart } from "../data/cart.js"; // You can also import AS 
+
 let productsHTML = '';
 
 products.forEach((product) => {
@@ -71,7 +73,7 @@ document.querySelectorAll('.js-add-to-cart')
             } else {
                 cart.push({
                     productID,
-                    quantity
+                    quantity: 1
                 });
             }
 
