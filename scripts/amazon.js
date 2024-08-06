@@ -64,7 +64,7 @@ document.querySelectorAll('.js-add-to-cart')
             // dataset retrieves all the data attribute that we put on the html
             // "data-" is another html attribute which sets an "id" to something on html
             // data-product-name turned into productName
-            const { productId } = button.dataset.productId;
+            const productId = button.dataset.productId;
             addToCart(productId);
             updateCartQuantity();
         });

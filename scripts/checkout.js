@@ -4,11 +4,14 @@ import { formatCurrency } from "./utils/money.js";
 
 let cartSummaryHTML = "";
 
+console.log('Cart:', JSON.stringify(cart, null, 2)); 
+console.log('Products:', JSON.stringify(products, null, 2));
+
 cart.forEach((cartItem) => {
     // Made my own code using find instead of forEach that supersimpledev originally used
     let matchingProduct = products.find(({ id }) => id === cartItem.productId);
 
-    cartSummaryHTML+=  `
+    cartSummaryHTML +=  `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
             <div class="delivery-date">
                 Delivery date: Tuesday, June 21
