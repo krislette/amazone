@@ -27,7 +27,6 @@ export function renderPaymentSummary() {
     const totalCents = totalBeforeTaxCents + taxCents;
 
     // Call calculateCartQuantity instead of computing all over again
-    
     const paymentSummaryHTML = `
         <div class="payment-summary-title">
             Order Summary
