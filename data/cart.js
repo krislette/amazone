@@ -22,13 +22,16 @@ export function addToCart(productId) {
             matchingItem = cartItem;
         }
     });
+
+    const quantityElement = document.querySelector(`.js-quantity-selector-${productId}`);
+    const quantity = Number(quantityElement.value);
     
     if (matchingItem) {
         matchingItem.quantity += 1;
     } else {
         cart.push({
             productId,
-            quantity: 1
+            quantity
         });
     }
 

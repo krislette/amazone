@@ -58,14 +58,37 @@ function updateCartQuantity() {
     document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
 }
 
+const addedMessageTimeouts = {}; // object that will contain the timeout ids of diff products
+
+function showProductAdded(productId) {
+    const addedElement = document.querySelector(`.js-added-message-${productId}`);
+    addedElement.classList.add('show-added-to-cart');
+    const previousTimeoutId = addedMessageTimeouts[productId];
+
+    // Checks if there is a timeout id for this product
+    // if so, clear the timeout
+    if (previousTimeoutId) {
+        clearTimeout(previousTimeoutId);
+    }
+    
+    const timeoutId = setTimeout(() => {
+        addedElement.classList.remove('show-added-to-cart');
+    }, 2000);
+
+    // Adds the timeout id to the object
+    // so that we can clear it later
+    addedMessageTimeouts[productId] = timeoutId;
+}
+
 document.querySelectorAll('.js-add-to-cart')
     .forEach((button) => {
         button.addEventListener('click', () => {
             // dataset retrieves all the data attribute that we put on the html
             // "data-" is another html attribute which sets an "id" to something on html
             // data-product-name turned into productName
-            const productId = button.dataset.productId;
+            const { productId } = button.dataset;
             addToCart(productId);
             updateCartQuantity();
+            showProductAdded(productId);
         });
     });
