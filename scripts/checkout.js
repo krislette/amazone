@@ -7,10 +7,12 @@ import {
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
+let now = dayjs()
+
 let cartSummaryHTML = "";
 
-console.log('Cart:', JSON.stringify(cart, null, 2));
-console.log('Products:', JSON.stringify(products, null, 2));
+console.log("Cart:", JSON.stringify(cart, null, 2));
+console.log("Products:", JSON.stringify(products, null, 2));
 
 cart.forEach((cartItem) => {
     // Made my own code using find instead of forEach that supersimpledev originally used
@@ -104,7 +106,7 @@ document.querySelector(".js-order-summary").innerHTML = cartSummaryHTML;
 
 function updateCartQuantity() {
     const cartQuantity = calculateCartQuantity();
-    document.querySelector('.js-cart-quantity').innerHTML = `${cartQuantity} items`;
+    document.querySelector(".js-cart-quantity").innerHTML = `${cartQuantity} items`;
 }
 
 document.querySelectorAll(".js-delete-link").forEach((link) => {
@@ -117,24 +119,24 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
     });
 });
 
-document.querySelectorAll('.js-update-link')
+document.querySelectorAll(".js-update-link")
     .forEach((link) => {
-        link.addEventListener('click', () => {
+        link.addEventListener("click", () => {
             const productId = link.dataset.productId;
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
             container.classList.add("is-editing-quantity");
         });
     });
 
-document.querySelectorAll('.js-save-link')
+document.querySelectorAll(".js-save-link")
     .forEach((link) => {
-        link.addEventListener('click', () => {
+        link.addEventListener("click", () => {
             const productId = link.dataset.productId;
 
             const container = document.querySelector(
                 `.js-cart-item-container-${productId}`
             );
-            container.classList.remove('is-editing-quantity');
+            container.classList.remove("is-editing-quantity");
 
             const quantityInput = document.querySelector(
                 `.js-quantity-input-${productId}`

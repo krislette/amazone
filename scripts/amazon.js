@@ -2,7 +2,7 @@ import { cart, addToCart, calculateCartQuantity } from "../data/cart.js"; // You
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
-let productsHTML = '';
+let productsHTML = "";
 
 products.forEach((product) => {
     productsHTML += `
@@ -46,18 +46,18 @@ products.forEach((product) => {
     `;
 });
 
-document.querySelector('.js-products-grid').innerHTML = productsHTML;
+document.querySelector(".js-products-grid").innerHTML = productsHTML;
 
 function updateCartQuantity() {
     const cartQuantity = calculateCartQuantity();
-    document.querySelector('.js-cart-quantity').innerHTML = cartQuantity;
+    document.querySelector(".js-cart-quantity").innerHTML = cartQuantity;
 }
 
 const addedMessageTimeouts = {}; // object that will contain the timeout ids of diff products
 
 function showProductAdded(productId) {
     const addedElement = document.querySelector(`.js-added-message-${productId}`);
-    addedElement.classList.add('show-added-to-cart');
+    addedElement.classList.add("show-added-to-cart");
     const previousTimeoutId = addedMessageTimeouts[productId];
 
     // Checks if there is a timeout id for this product
@@ -67,7 +67,7 @@ function showProductAdded(productId) {
     }
     
     const timeoutId = setTimeout(() => {
-        addedElement.classList.remove('show-added-to-cart');
+        addedElement.classList.remove("show-added-to-cart");
     }, 2000);
 
     // Adds the timeout id to the object
@@ -75,9 +75,9 @@ function showProductAdded(productId) {
     addedMessageTimeouts[productId] = timeoutId;
 }
 
-document.querySelectorAll('.js-add-to-cart')
+document.querySelectorAll(".js-add-to-cart")
     .forEach((button) => {
-        button.addEventListener('click', () => {
+        button.addEventListener("click", () => {
             // dataset retrieves all the data attribute that we put on the html
             // "data-" is another html attribute which sets an "id" to something on html
             // data-product-name turned into productName
