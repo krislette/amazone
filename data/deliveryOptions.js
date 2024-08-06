@@ -11,3 +11,8 @@ export const deliveryOptions = [{
     deliveryDays: 1,
     priceCents: 999
 }];
+
+export function getDeliveryOption(deliveryOptionId) {
+    // Optimized code with safer handling of user option (when nothing is selected)
+    return deliveryOptions.find((option) => option.id === deliveryOptionId) || deliveryOptions[0];
+}

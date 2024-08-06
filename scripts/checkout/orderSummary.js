@@ -1,13 +1,8 @@
-import {
-    cart,
-    removeFromCart,
-    calculateCartQuantity,
-    updateQuantity,
-    updateDeliveryOption
-} from "../../data/cart.js";
-import { products } from "../../data/products.js";
+import { cart, removeFromCart, calculateCartQuantity, updateQuantity, updateDeliveryOption } from "../../data/cart.js";
+import { getProduct } from "../../data/products.js";
+import { deliveryOptions, getDeliveryOption } from "../../data/deliveryOptions.js"
 import { formatCurrency } from "../utils/money.js";
-import { deliveryOptions } from "../../data/deliveryOptions.js"
+import { renderPaymentSummary } from "./paymentSummary.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 export function renderOrderSummary() {
@@ -15,11 +10,11 @@ export function renderOrderSummary() {
 
     cart.forEach((cartItem) => {
         // Made my own code using find instead of forEach that supersimpledev originally used
-        const matchingProduct = products.find(({ id }) => id === cartItem.productId);
+        const matchingProduct = getProduct(cartItem.productId);
 
         // My own version of code for fetching matching delivery option
         const deliveryOptionId = cartItem.deliveryOptionId;
-        const deliveryOption = deliveryOptions.find((option) => option.id === deliveryOptionId);
+        const deliveryOption = getDeliveryOption(deliveryOptionId);
 
         const today = dayjs();
         const deliveryDate = today.add(
@@ -129,6 +124,7 @@ export function renderOrderSummary() {
             const container = document.querySelector(`.js-cart-item-container-${productId}`);
             container.remove(); // Fetch element from html and remove it using .remove()
             updateCartQuantity();
+            renderPaymentSummary(); // Render html when an action happens
         });
     });
 
@@ -138,6 +134,7 @@ export function renderOrderSummary() {
                 const productId = link.dataset.productId;
                 const container = document.querySelector(`.js-cart-item-container-${productId}`);
                 container.classList.add("is-editing-quantity");
+                renderPaymentSummary(); // Render so it aligns
             });
         });
 
@@ -163,6 +160,7 @@ export function renderOrderSummary() {
                 quantityLabel.innerHTML = newQuantity;
         
                 updateCartQuantity();
+                renderPaymentSummary(); // Always render payment sum
             });
         });
 
@@ -171,6 +169,7 @@ export function renderOrderSummary() {
             const { productId, deliveryOptionId } = element.dataset;
             updateDeliveryOption(productId, deliveryOptionId);
             renderOrderSummary(); // Recursion
+            renderPaymentSummary(); // Don't forget
         });
     })
 
