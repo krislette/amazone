@@ -60,5 +60,4 @@ describe("Test suite: addToCart", () => {
         // Clean up the DOM
         document.body.removeChild(quantityInput);
     });
-
 });
