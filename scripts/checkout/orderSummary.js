@@ -109,41 +109,39 @@ export function renderOrderSummary() {
         });
     });
 
-    document.querySelectorAll(".js-update-link")
-        .forEach((link) => {
-            link.addEventListener("click", () => {
-                const productId = link.dataset.productId;
-                const container = document.querySelector(`.js-cart-item-container-${productId}`);
-                container.classList.add("is-editing-quantity");
-                renderPaymentSummary(); // Render so it aligns
-            });
+    document.querySelectorAll(".js-update-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            const productId = link.dataset.productId;
+            const container = document.querySelector(`.js-cart-item-container-${productId}`);
+            container.classList.add("is-editing-quantity");
+            renderPaymentSummary(); // Render so it aligns
         });
+    });
 
-    document.querySelectorAll(".js-save-link")
-        .forEach((link) => {
-            link.addEventListener("click", () => {
-                const productId = link.dataset.productId;
+    document.querySelectorAll(".js-save-link").forEach((link) => {
+        link.addEventListener("click", () => {
+            const productId = link.dataset.productId;
 
-                const container = document.querySelector(
-                    `.js-cart-item-container-${productId}`
-                );
-                container.classList.remove("is-editing-quantity");
+            const container = document.querySelector(
+                `.js-cart-item-container-${productId}`
+            );
+            container.classList.remove("is-editing-quantity");
 
-                const quantityInput = document.querySelector(
-                    `.js-quantity-input-${productId}`
-                );
-                const newQuantity = Number(quantityInput.value);
-                updateQuantity(productId, newQuantity);
+            const quantityInput = document.querySelector(
+                `.js-quantity-input-${productId}`
+            );
+            const newQuantity = Number(quantityInput.value);
+            updateQuantity(productId, newQuantity);
 
-                const quantityLabel = document.querySelector(
-                    `.js-quantity-label-${productId}`
-                );
-                quantityLabel.innerHTML = newQuantity;
-        
-                renderCheckoutHeader();
-                renderPaymentSummary(); // Always render payment sum
-            });
+            const quantityLabel = document.querySelector(
+                `.js-quantity-label-${productId}`
+            );
+            quantityLabel.innerHTML = newQuantity;
+    
+            renderCheckoutHeader();
+            renderPaymentSummary(); // Always render payment sum
         });
+    });
 
     document.querySelectorAll(".js-delivery-option").forEach((element) => {
         element.addEventListener("click", () => {
@@ -153,10 +151,6 @@ export function renderOrderSummary() {
             renderPaymentSummary(); // Don't forget
         });
     })
-
-    document.addEventListener("DOMContentLoaded", () => {
-        updateCartQuantity();
-    });
 }
 
 // Uses MVC - model view controller with cart.js being the model, 

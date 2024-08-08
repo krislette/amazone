@@ -75,8 +75,7 @@ function showProductAdded(productId) {
     addedMessageTimeouts[productId] = timeoutId;
 }
 
-document.querySelectorAll(".js-add-to-cart")
-    .forEach((button) => {
+document.querySelectorAll(".js-add-to-cart").forEach((button) => {
         button.addEventListener("click", () => {
             // dataset retrieves all the data attribute that we put on the html
             // "data-" is another html attribute which sets an "id" to something on html
