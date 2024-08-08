@@ -42,6 +42,14 @@ describe("Test suite: addToCart", () => {
         expect(cart.length).toEqual(1);
         expect(cart[0].quantity).toEqual(2);
         expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+        expect(localStorage.setItem).toHaveBeenCalledWith(
+            "cart",
+            JSON.stringify([{
+                productId: productIdToAdd,
+                quantity: 2,
+                deliveryOptionId: "1"
+            }])
+        );
     });
 
     // Flaky Test: A test that sometimes passes, or sometimes fails
@@ -61,5 +69,13 @@ describe("Test suite: addToCart", () => {
         expect(cart.length).toEqual(1);
         expect(cart[0].productId).toEqual(productIdToAdd);
         expect(cart[0].quantity).toEqual(1);
+        expect(localStorage.setItem).toHaveBeenCalledWith(
+            "cart",
+            JSON.stringify([{
+                productId: productIdToAdd,
+                quantity: 1,
+                deliveryOptionId: "1"
+            }])
+        );
     });
 });
