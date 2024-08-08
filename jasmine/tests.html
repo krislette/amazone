@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">  c
+  <meta charset="utf-8">
   <title>Jasmine Spec Runner v5.1.1</title>
 
   <link rel="shortcut icon" type="image/png" href="lib/jasmine-5.1.1/jasmine_favicon.png">
@@ -15,9 +15,13 @@
 
   <script type="module" src="./utils/moneyTest.js"></script>
   <script type="module" src="./data/cartTest.js"></script>
+  <script type="module" src="./checkout/orderSummaryTest.js"></script>
 
 </head>
-
 <body>
+  <!-- Always create containers (div) for test code
+    so that the whole body doesn't get modified
+    because the jasmine ui is here -->
+  <div class="js-test-container"></div>
 </body>
 </html>
