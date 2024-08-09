@@ -1,6 +1,5 @@
 import { addToCart, calculateCartQuantity } from "../data/cart.js"; // You can also import AS 
 import { products } from "../data/products.js";
-import { formatCurrency } from "./utils/money.js";
 
 let productsHTML = "";
 
@@ -10,16 +9,20 @@ products.forEach((product) => {
             <div class="product-image-container">
                 <img class="product-image" src="${product.image}">
             </div>
+
             <div class="product-name limit-text-to-2-lines">
                 ${product.name}
             </div>
+
             <div class="product-rating-container">
                 <img class="${product.getStarsUrl()}">
                 <div class="product-rating-count link-primary">${product.rating.count}</div>
             </div>
+
             <div class="product-price">
                 ${product.getPrice()}
             </div>
+
             <div class="product-quantity-container">
                 <select class="js-quantity-selector-${product.id}">
                     <option selected value="1">1</option>
@@ -34,11 +37,17 @@ products.forEach((product) => {
                     <option value="10">10</option>
                 </select>
             </div>
+
+            <!-- Polymorphism -->
+            ${product.createExtraInfoHTML()}
+
             <div class="product-spacer"></div>
+
             <div class="added-to-cart js-added-message-${product.id}">
                 <img src="images/icons/checkmark.png">
                 Added
             </div>
+
             <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}">
                 Add to Cart
             </button>
@@ -76,17 +85,24 @@ function showProductAdded(productId) {
 }
 
 document.querySelectorAll(".js-add-to-cart").forEach((button) => {
-        button.addEventListener("click", () => {
-            // dataset retrieves all the data attribute that we put on the html
-            // "data-" is another html attribute which sets an "id" to something on html
-            // data-product-name turned into productName
-            const { productId } = button.dataset;
-            addToCart(productId);
-            updateCartQuantity();
-            showProductAdded(productId);
-        });
+    button.addEventListener("click", () => {
+        // dataset retrieves all the data attribute that we put on the html
+        // "data-" is another html attribute which sets an "id" to something on html
+        // data-product-name turned into productName
+        const { productId } = button.dataset;
+        addToCart(productId);
+        updateCartQuantity();
+        showProductAdded(productId);
     });
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     updateCartQuantity();
 });
+
+//  Line 42: Polymorphism 
+// : Have the classes use the same method 
+// : and the class itself will determine what 
+// : this method does based on the definition
+// : (Because we don't know if this one's 
+// : a product or a clothing class)

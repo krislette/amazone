@@ -5,7 +5,7 @@ export function getProduct(productId) {
     return products.find((product) => product.id === productId);
 }
 
-// Product class for better code
+// Product class for better code, also parent class
 class Product {
     id;
     image;
@@ -27,6 +27,32 @@ class Product {
 
     getPrice() {
         return `$${formatCurrency(this.priceCents)}`;
+    }
+
+    createExtraInfoHTML() {
+        // No extra info because it's not a clothing with no size chart
+        return "";
+    }
+}
+
+// Keyword: `extends` to inherit properties & methods
+class Clothing extends Product {
+    sizeChartLink;
+
+    constructor(productDetails) {
+        // Calls the constructor of the parent class 
+        super(productDetails);
+        this.sizeChartLink = productDetails.sizeChartLink;
+    }
+
+    // Method overriding: Overridden method from Products to do something different
+    createExtraInfoHTML() {
+        // super.createExtraInfoHTML(); // If you really want to use the parent's method
+        return `
+            <a href="${this.sizeChartLink}" target="_blank">
+                Size chart
+            </a>
+        `;
     }
 }
 
@@ -514,5 +540,6 @@ export const products = [
         keywords: ["sweaters", "hoodies", "apparel", "mens"],
     },
 ].map((productDetails) => {
-    return new Product(productDetails);
+    // Made an enhancement to the code by using ternary
+    return productDetails.type === "clothing" ? new Clothing(productDetails) : new Product(productDetails);
 });
