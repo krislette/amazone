@@ -56,30 +56,20 @@ export function removeFromCart(productId) {
 }
 
 export function calculateCartQuantity() {
-    let cartQuantity = 0;
-
-    cart.forEach((cartItem) => {
-        cartQuantity += cartItem.quantity;
-    });
-
-    return cartQuantity;
+    // Also refactored this code to be a one liner accumulator
+    return cart.reduce((cartQuantity, cartItem) => cartQuantity + cartItem.quantity, 0);
 }
 
 export function updateQuantity(productId, newQuantity) {
-    let matchingItem;
-  
-    cart.forEach((cartItem) => {
-        if (productId === cartItem.productId) {
-            matchingItem = cartItem;
-        }
-    });
-  
+    // Refactored this code as well
+    const matchingItem = cart.find((cartItem) => productId === cartItem.productId);
     matchingItem.quantity = newQuantity;
-  
     saveToStorage();
 }
 
 export function updateDeliveryOption(productId, deliveryOptionId) {
+    // And this too, forEach is not always good cause 
+    // there are perfect methods for specific tasks
     const matchingItem = cart.find((cartItem) => productId === cartItem.productId);
 
     if (!matchingItem) return;
