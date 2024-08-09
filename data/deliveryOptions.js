@@ -39,3 +39,8 @@ export function calculateDeliveryDate(deliveryOption) {
 
     return deliveryDate.format("dddd, MMMM D");
 }
+
+export function isValidDeliveryOption(deliveryOptionId) {
+    // I did a one line return instead of declaring a found var
+    return deliveryOptions.find((option) => option.id === deliveryOptionId) !== undefined;
+}

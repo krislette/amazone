@@ -1,4 +1,4 @@
-import { addToCart, removeFromCart, cart, loadFromStorage } from "../../data/cart.js";
+import { addToCart, removeFromCart, cart, loadFromStorage, updateDeliveryOption } from "../../data/cart.js";
 
 // Unit Test: Only testing one piece (unit) of code
 describe("Test suite: addToCart", () => {
@@ -128,5 +128,58 @@ describe("Test suite: removeFromCart", () => {
                 deliveryOptionId: "1"
             }])
         );
+    });
+});
+
+// Exercise k test suite for updateDeliveryOption
+describe("Test suite: updateDeliveryOption", () => {
+    const productIdToUpdate = "e43638ce-6aa0-4b85-b27f-e1d07eb678c6";
+
+    beforeEach(() => {
+        spyOn(localStorage, "setItem");
+
+        spyOn(localStorage, "getItem").and.callFake(() => {
+            return JSON.stringify([{
+                productId: productIdToUpdate,
+                quantity: 1,
+                deliveryOptionId: "1"
+            }]);
+        });
+        loadFromStorage();
+    });
+
+    it("Updates the delivery option", () => {
+        updateDeliveryOption(productIdToUpdate, "3");
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual(productIdToUpdate);
+        expect(cart[0].quantity).toEqual(1);
+        expect(cart[0].deliveryOptionId).toEqual("3");
+        expect(localStorage.setItem).toHaveBeenCalledTimes(1);
+        expect(localStorage.setItem).toHaveBeenCalledWith(
+            "cart",
+            JSON.stringify([{
+                productId: productIdToUpdate,
+                quantity: 1,
+                deliveryOptionId: "3"
+            }])
+        );
+    });
+    
+    it("Does nothing if the product is not in the cart", () => {
+        updateDeliveryOption("n0n-3x1573n7-1d", "3");
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual(productIdToUpdate);
+        expect(cart[0].quantity).toEqual(1);
+        expect(cart[0].deliveryOptionId).toEqual("1");
+        expect(localStorage.setItem).toHaveBeenCalledTimes(0);
+    });
+
+    it("Does nothing if the delivery option doesn't exist", () => {
+        updateDeliveryOption(productIdToUpdate, "n0n-3x1573n7-1d");
+        expect(cart.length).toEqual(1);
+        expect(cart[0].productId).toEqual(productIdToUpdate);
+        expect(cart[0].quantity).toEqual(1);
+        expect(cart[0].deliveryOptionId).toEqual("1");
+        expect(localStorage.setItem).toHaveBeenCalledTimes(0);
     });
 });
