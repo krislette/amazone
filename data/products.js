@@ -1,8 +1,38 @@
+import { formatCurrency } from "../scripts/utils/money.js";
+
 export function getProduct(productId) {
     // One-line code for finding a product
     return products.find((product) => product.id === productId);
 }
 
+// Product class for better code
+class Product {
+    id;
+    image;
+    name;
+    rating;
+    priceCents;
+
+    constructor(productDetails) {
+        this.id = productDetails.id;
+        this.image = productDetails.image;
+        this.name = productDetails.name;
+        this.rating = productDetails.rating;
+        this.priceCents = productDetails.priceCents;
+    }
+
+    getStarsUrl() {
+        return `product-rating-stars" src="images/ratings/rating-${this.rating.stars * 10}.png`;
+    }
+
+    getPrice() {
+        return `$${formatCurrency(this.priceCents)}`;
+    }
+}
+
+// .map() method runs a function for each element in the array
+// and .map() should return something because it creates a new array
+// and the returned values will be stored on that new array
 export const products = [
     {
         id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -483,4 +513,6 @@ export const products = [
         priceCents: 2400,
         keywords: ["sweaters", "hoodies", "apparel", "mens"],
     },
-];
+].map((productDetails) => {
+    return new Product(productDetails);
+});
