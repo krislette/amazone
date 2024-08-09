@@ -88,7 +88,7 @@ describe("Test suite: Clothing", () => {
         expect(clothing.getPrice()).toEqual("$7.99");
     });
 
-    it("Displays a size chart link in extraInfoHTML", () => {
+    it("Displays a size chart link in createExtraInfoHTML", () => {
         // It's hard to match a multiline string exactly, so we"ll
         // just check if the result contains certain strings.
         expect(clothing.createExtraInfoHTML()).toContain(
@@ -140,7 +140,7 @@ describe("Test suite: Appliance", () => {
         expect(appliance.getPrice()).toEqual("$18.99");
     });
 
-    it("Displays instructions and warranty in extraInfoHTML", () => {
+    it("Displays instructions and warranty in createExtraInfoHTML", () => {
         expect(appliance.createExtraInfoHTML()).toContain(
             `<a href="images/appliance-instructions.png" target="_blank">`
         );
