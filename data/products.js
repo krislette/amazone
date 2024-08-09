@@ -56,9 +56,6 @@ class Clothing extends Product {
     }
 }
 
-// .map() method runs a function for each element in the array
-// and .map() should return something because it creates a new array
-// and the returned values will be stored on that new array
 export const products = [
     {
         id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
@@ -540,6 +537,9 @@ export const products = [
         keywords: ["sweaters", "hoodies", "apparel", "mens"],
     },
 ].map((productDetails) => {
+    // .map() method runs a function for each element in the array
+    // and .map() should return something because it creates a new array
+    // and the returned values will be stored on that new array
     // Made an enhancement to the code by using ternary
     return productDetails.type === "clothing" ? new Clothing(productDetails) : new Product(productDetails);
 });
