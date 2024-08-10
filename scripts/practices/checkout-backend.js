@@ -1,7 +1,7 @@
-import { renderOrderSummary } from "./checkout/orderSummary.js";
-import { renderPaymentSummary } from "./checkout/paymentSummary.js";
-import { renderCheckoutHeader } from "./checkout/checkoutHeader.js";
-import { loadProducts, loadProductsFetch } from "../data/products-backend.js";
+import { renderOrderSummary } from "../checkout/orderSummary.js";
+import { renderPaymentSummary } from "../checkout/paymentSummary.js";
+import { renderCheckoutHeader } from "../checkout/checkoutHeader.js";
+import { loadProducts, loadProductsFetch } from "../../data/products-backend.js";
 
 // Using a callback function
 loadProducts(() => {

@@ -1,5 +1,5 @@
-import { addToCart, calculateCartQuantity } from "../data/cart.js"; // You can also import AS 
-import { products, loadProducts } from "../data/products-backend.js";
+import { addToCart, calculateCartQuantity } from "../../data/cart.js"; // You can also import AS 
+import { products, loadProducts } from "../../data/products-backend.js";
 
 loadProducts(renderProductsGrid);
 
