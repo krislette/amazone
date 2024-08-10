@@ -95,17 +95,24 @@ Promise.all([
 // for promises because promises are long
 // as can be seen from above
 async function loadPage() {
-    // Instead of using .then for the next step,
-    // you can just type await in front
-    await loadProductsFetch(); // Returns a promise
-    
-    // Value can be caught using a variable instead of then
-    const value = await new Promise((resolve) => {
-        loadCart(() => {
-            resolve("value3");
-        });
-    })
-    console.log(value);
+    try {
+        // Instead of using .then for the next step,
+        // you can just type await in front
+        await loadProductsFetch(); // Returns a promise
+        
+        // Value can be caught using a variable instead of then
+        const value = await new Promise((resolve, reject) => {
+            // In promises, you can't use `throw` because it doesnt work in the future
+            // instead, you can use `reject` to let you essentially ~throw and error
+            // into the future (asynchronously)
+            loadCart(() => {
+                resolve("value3");
+            });
+        })
+        console.log(value);
+    } catch (error) {
+        console.log("Unexpected error. Please try again later");
+    }
 
     renderOrderSummary();
     renderPaymentSummary();
