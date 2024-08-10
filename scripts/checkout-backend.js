@@ -1,7 +1,7 @@
 import { renderOrderSummary } from "./checkout/orderSummary.js";
 import { renderPaymentSummary } from "./checkout/paymentSummary.js";
 import { renderCheckoutHeader } from "./checkout/checkoutHeader.js";
-import { loadProducts } from "../data/products-backend.js";
+import { loadProducts, loadProductsFetch } from "../data/products-backend.js";
 
 // Using a callback function
 loadProducts(() => {
@@ -58,6 +58,24 @@ Promise.all([
             resolve("value");
         });
     }),
+    new Promise((resolve) => {
+        loadCart(() => {
+            resolve();
+        });
+    })
+
+    // .then() adds a next step to a promise
+]).then((values) => {
+    console.log(values);
+    renderOrderSummary();
+    renderPaymentSummary();
+    renderCheckoutHeader();
+});
+
+// A version and final version of the code that uses loadProductsFetch
+// which returns a promise automatically
+Promise.all([
+    loadProductsFetch(),
     new Promise((resolve) => {
         loadCart(() => {
             resolve();
