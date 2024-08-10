@@ -4,7 +4,7 @@ import { formatCurrency } from "./utils/money.js";
 import { addToCart, calculateCartQuantity } from "../data/cart.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
-async function loadPage() {
+async function renderOrdersPage() {
     let ordersHTML = "";
 
     orders.forEach((order) => {
@@ -102,6 +102,8 @@ async function loadPage() {
 
             // Add the product to the cart with the correct quantity
             addToCart(productId);
+
+            document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
             
             // Show "Added to cart" text temporarily
             button.innerHTML = "Added to cart";
@@ -112,9 +114,10 @@ async function loadPage() {
                 `;
             }, 1000);
         });
-
-        document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
     });
 }
 
-document.addEventListener("DOMContentLoaded", loadPage);
+document.addEventListener("DOMContentLoaded", () => {
+    renderOrdersPage();
+    document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
+});

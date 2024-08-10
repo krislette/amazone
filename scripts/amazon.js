@@ -96,7 +96,9 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     });
 });
 
-document.addEventListener("DOMContentLoaded", updateCartQuantity);
+document.addEventListener("DOMContentLoaded", () => {
+    updateCartQuantity();
+});
 
 //  Line 42: Polymorphism 
 // : Have the classes use the same method 
