@@ -89,3 +89,27 @@ Promise.all([
     renderPaymentSummary();
     renderCheckoutHeader();
 });
+
+// Async makes a function return a promise
+// Async and await are also kinda like shortcuts
+// for promises because promises are long
+// as can be seen from above
+async function loadPage() {
+    // Instead of using .then for the next step,
+    // you can just type await in front
+    await loadProductsFetch(); // Returns a promise
+    
+    // Value can be caught using a variable instead of then
+    const value = await new Promise((resolve) => {
+        loadCart(() => {
+            resolve("value3");
+        });
+    })
+    console.log(value);
+
+    renderOrderSummary();
+    renderPaymentSummary();
+    renderCheckoutHeader();
+}
+
+loadPage();
