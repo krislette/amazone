@@ -1,5 +1,6 @@
 import { getOrder } from "../data/orders.js";
 import { getProduct } from "../data/products.js";
+import { calculateCartQuantity } from "../data/cart.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 function renderTrackingPage() {
@@ -10,11 +11,14 @@ function renderTrackingPage() {
     const order = getOrder(orderId);
     const product = getProduct(productId);
 
-    console.log(!order ? "Order not found" : "Order found"); 
-    console.log(!product ? "Product not found" : "Product found"); 
-    
     const productDetails = order.products.find((details) => details.productId === product.id);
 
+    // Calculate the percent progress of the delivery
+    const today = dayjs();
+    const orderTime = dayjs(order.orderTime);
+    const deliveryTime = dayjs(productDetails.estimatedDeliveryTime);
+    const percentProgress = ((today - orderTime) / (deliveryTime - orderTime)) * 100;
+ 
     const trackingHTML = `
         <a class="back-to-orders-link link-primary" href="orders.html">
             View all orders
@@ -37,19 +41,19 @@ function renderTrackingPage() {
         <img class="product-image" src="${product.image}">
 
         <div class="progress-labels-container">
-            <div class="progress-label">
+            <div class="progress-label ${percentProgress < 50 ? "current-status" : ""}">
                 Preparing
             </div>
-            <div class="progress-label current-status">
+            <div class="progress-label ${(percentProgress >= 50 && percentProgress < 100) ? "current-status" : ""}">
                 Shipped
             </div>
-            <div class="progress-label">
+            <div class="progress-label ${percentProgress >= 100 ? "current-status" : ""}">
                 Delivered
             </div>
         </div>
 
         <div class="progress-bar-container">
-            <div class="progress-bar"></div>
+            <div class="progress-bar" style="width: ${percentProgress}%;"></div>
         </div>
     `;
 
@@ -58,4 +62,5 @@ function renderTrackingPage() {
 
 document.addEventListener("DOMContentLoaded", () => {
     renderTrackingPage();
+    document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
 });

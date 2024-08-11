@@ -3,7 +3,24 @@ import { products } from "../data/products.js";
 
 let productsHTML = "";
 
-products.forEach((product) => {
+const url = new URL(window.location.href);
+const search = url.searchParams.get("search");
+
+let filteredProducts = products;
+
+// If a search exists in the URL parameters,
+// filter the products that match the search
+if (search) {
+    // Edited return statement to include partial searches
+    // e.g. [keyword]: robe -> rob
+    //      [keyword]: bath -> bathroom, bathing
+    filteredProducts = products.filter((product) => {
+        return product.name.toLowerCase().includes(search.toLowerCase())
+            || product.keywords.some((keyword) => keyword.toLowerCase().includes(search.toLowerCase()));
+    });
+}
+
+filteredProducts.forEach((product) => {
     productsHTML += `
         <div class="product-container">
             <div class="product-image-container">
@@ -96,8 +113,27 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     });
 });
 
+document.querySelector(".js-search-button").addEventListener("click", () => {
+    const search = document.querySelector(".js-search-bar").value;
+    window.location.href = `amazon.html?search=${search}`;
+});
+
+document.querySelector(".js-search-bar").addEventListener("keydown", (event) => {
+    // Add an enter keydown listener for the search bar
+    if (event.key === "Enter") {
+        const search = document.querySelector(".js-search-bar").value;
+        window.location.href = `amazon.html?search=${search}`;
+    }
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     updateCartQuantity();
+
+    // Check if a search happened and retain input text
+    const search = url.searchParams.get("search");
+    if (search) {
+        document.querySelector(".js-search-bar").value = search;
+    }
 });
 
 //  Line 42: Polymorphism 
