@@ -1,6 +1,7 @@
 import { getOrder } from "../data/orders.js";
 import { getProduct } from "../data/products.js";
 import { calculateCartQuantity } from "../data/cart.js";
+import { handleSearch } from "./utils/search.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 function renderTrackingPage() {
@@ -73,4 +74,14 @@ function renderTrackingPage() {
 document.addEventListener("DOMContentLoaded", () => {
     renderTrackingPage();
     document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
+
+    // Reuse code for handling searches on top
+    handleSearch();
+
+    const url = new URL(window.location.href);
+    const search = url.searchParams.get("search");
+
+    if (search) {
+        document.querySelector(".js-search-bar").value = search;
+    }
 });

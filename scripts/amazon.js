@@ -1,5 +1,6 @@
 import { addToCart, calculateCartQuantity } from "../data/cart.js"; // You can also import AS 
 import { products } from "../data/products.js";
+import { handleSearch } from "./utils/search.js";
 
 let productsHTML = "";
 
@@ -113,18 +114,8 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     });
 });
 
-document.querySelector(".js-search-button").addEventListener("click", () => {
-    const search = document.querySelector(".js-search-bar").value;
-    window.location.href = `amazon.html?search=${search}`;
-});
-
-document.querySelector(".js-search-bar").addEventListener("keydown", (event) => {
-    // Add an enter keydown listener for the search bar
-    if (event.key === "Enter") {
-        const search = document.querySelector(".js-search-bar").value;
-        window.location.href = `amazon.html?search=${search}`;
-    }
-});
+// Migrated search code to util/search to share with order
+handleSearch();
 
 document.addEventListener("DOMContentLoaded", () => {
     updateCartQuantity();

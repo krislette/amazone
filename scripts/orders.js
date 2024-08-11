@@ -1,8 +1,9 @@
-import { getProduct } from "../data/products.js";
+import { products, getProduct } from "../data/products.js";
 import { orders } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
 import { createEmptyCartHTML } from "./utils/empty.js";
 import { addToCart, calculateCartQuantity } from "../data/cart.js";
+import { handleSearch } from "./utils/search.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
 async function renderOrdersPage() {
@@ -123,4 +124,14 @@ async function renderOrdersPage() {
 document.addEventListener("DOMContentLoaded", () => {
     renderOrdersPage();
     document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
+
+    // Reuse code for handling searches on top
+    handleSearch();
+
+    const url = new URL(window.location.href);
+    const search = url.searchParams.get("search");
+
+    if (search) {
+        document.querySelector(".js-search-bar").value = search;
+    }
 });
