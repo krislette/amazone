@@ -22,6 +22,11 @@ describe("Test suite: renderOrderSummary", () => {
             <div class="js-order-summary"></div>
             <div class="js-checkout-header"></div>
             <div class="js-payment-summary"></div>
+            <div class="js-modal">
+                <div class="modal-content">
+                    <button class="js-close-modal-button">OK</button>
+                </div>
+            </div>
         `;
 
         // Mocking localstorage: getItem
@@ -37,7 +42,7 @@ describe("Test suite: renderOrderSummary", () => {
             }]);
         });
         loadFromStorage();
-        
+
         renderOrderSummary();
     });
 
