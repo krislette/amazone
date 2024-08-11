@@ -4,7 +4,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/krislette/amazone">
-    <img src="src/images/amazon-mobile-logo-white.png" alt="Logo" width="80" height="80">
+    <img src="images/amazon-mobile-logo.png" alt="Logo" width="80" height="80">
   </a>
 
   <h1 align="center">Amazone</h1>
@@ -50,24 +50,19 @@
 ## Website Snapshots
 
 ### Main/Landing Page
-
--- link
+![image](https://github.com/user-attachments/assets/290999a3-0c02-4a3f-90b1-278558d91bd7)
 
 ### Checkout Page
-
--- link
+![image](https://github.com/user-attachments/assets/67419df6-fb3c-4109-abd6-752d3b35fd91)
 
 ### Orders Page
-
--- link
+![image](https://github.com/user-attachments/assets/3afdf5e5-c559-4ea0-b07d-7b48e4da3420)
 
 ### Tracking Page
-
--- link
+![image](https://github.com/user-attachments/assets/e50870e8-8462-4dac-8f7b-e23047b446f8)
 
 ### Search Feature
-
--- link
+![image](https://github.com/user-attachments/assets/645048e4-820a-48a5-8505-c734b399675c)
 
 <!-- WEBSITE INFO -->
 
