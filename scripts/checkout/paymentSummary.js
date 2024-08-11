@@ -77,13 +77,12 @@ export function renderPaymentSummary() {
         }
 
         const spinner = document.querySelector(".js-loading-spinner");
+        const overlay = document.querySelector(".overlay");
 
         try {
             // Show the spinner I added to indicate placed order
+            overlay.style.display = "flex";
             spinner.style.display = "block";
-
-            // Disable the button so users to avoid double click while processing order
-            document.querySelector(".js-place-order").disabled = true;
 
             const response = await fetch("https://supersimplebackend.dev/orders", {
                 method: "POST",
@@ -110,6 +109,10 @@ export function renderPaymentSummary() {
 
     document.querySelector(".js-close-modal-button").addEventListener("click", () => {
         // Close the modal when the user clicks OK
+        document.querySelector(".js-modal").style.display = "none";
+    });
+    
+    document.body.addEventListener("keydown", () => {
         document.querySelector(".js-modal").style.display = "none";
     });
 }
