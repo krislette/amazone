@@ -1,59 +1,61 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Checkout</title>
+<html lang="en">
+<head>
+  <title>Amazone: Checkout</title>
 
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- This code is needed for responsive design to work.
+    (Responsive design = make the website look good on
+    smaller screen sizes like a phone or a tablet). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- Load a font called Roboto from Google Fonts. -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <!-- Load a font called Roboto from Google Fonts. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-    <!-- Here are the CSS files for this page. -->
-    <link rel="stylesheet" href="styles/shared/general.css">
-    <link rel="stylesheet" href="styles/pages/checkout/checkout-header.css">
-    <link rel="stylesheet" href="styles/pages/checkout/checkout.css">
-  </head>
-  <body>
-    <div class="checkout-header js-checkout-header">
+  <!-- Here are the CSS files for this page. -->
+  <link rel="stylesheet" href="styles/shared/general.css">
+  <link rel="stylesheet" href="styles/pages/checkout/checkout-header.css">
+  <link rel="stylesheet" href="styles/pages/checkout/checkout.css">
+
+  <!-- I included a website logo to make it more appealing -->
+  <link rel="icon" href="./images/amazon-mobile-logo-white.png">
+</head>
+<body>
+  <div class="checkout-header js-checkout-header">
+  </div>
+
+  <div class="main">
+    <div class="page-title">Review your order</div>
+
+    <div class="checkout-grid">
+      <div class="order-summary js-order-summary">
+      </div>
+
+      <div class="payment-summary js-payment-summary">
+      </div>
     </div>
 
-    <div class="main">
-      <div class="page-title">Review your order</div>
-
-      <div class="checkout-grid">
-        <div class="order-summary js-order-summary">
-        </div>
-
-        <div class="payment-summary js-payment-summary">
-        </div>
-      </div>
-
-      <!-- Added a spinner for placed order indicator -->
-      <div class="loading-spinner js-loading-spinner">
-        <img src="./images/loading-spinner.gif" alt="Loading...">
-      </div>
-      <div class="overlay"></div>
-
-      <!-- Also added a modal pop up for empty cart warning -->
-      <div class="modal js-modal">
-        <div class="modal-content">
-          <p>Your Amazone Cart is empty</p>
-          <button class="close-modal-button js-close-modal-button">OK</button>
-        </div>
-      </div>
-      
+    <!-- Added a spinner for placed order indicator -->
+    <div class="loading-spinner js-loading-spinner">
+      <img src="./images/loading-spinner.gif" alt="Loading...">
     </div>
+    <div class="overlay"></div>
 
-    <!-- Standard is to load external libraries first -->
-    <!-- Dayjs library creates a function called dayjs() -->
-    <!-- Not the best practice to include libraries using html -->
-    <!-- <script src="https://unpkg.com/dayjs@1.11.10/dayjs.min.jshttps://unpkg.com/dayjs@1.11.10/dayjs.min.js"></script> -->
-    <!-- And then our code next -->
-    <script type="module" src="./scripts/checkout.js"></script>
-  </body>
+    <!-- Also added a modal pop up for empty cart warning -->
+    <div class="modal js-modal">
+      <div class="modal-content">
+        <p>Your Amazone Cart is empty</p>
+        <button class="close-modal-button js-close-modal-button">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Standard is to load external libraries first -->
+  <!-- Dayjs library creates a function called dayjs() -->
+  <!-- Not the best practice to include libraries using html -->
+  <!-- Insert a script tag including an online module -->
+  <!-- And then our code next -->
+  <script type="module" src="./scripts/checkout.js"></script>
+</body>
 </html>
