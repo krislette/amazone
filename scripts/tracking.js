@@ -1,7 +1,6 @@
 import { getOrder } from "../data/orders.js";
 import { getProduct } from "../data/products.js";
 import { calculateCartQuantity } from "../data/cart.js";
-import { createEmptyCartHTML } from "./utils/empty.js";
 import dayjs from 'https://unpkg.com/dayjs@1.11.10/esm/index.js';
 
 function renderTrackingPage() {
@@ -9,16 +8,16 @@ function renderTrackingPage() {
     const orderId = url.searchParams.get("orderId");
     const productId = url.searchParams.get("productId");
 
+    const order = getOrder(orderId);
+    const product = getProduct(productId);
+    
     // Added a checker for invalid URL of product and order
     // I could also use some improvements here to make it more robust
     // but I'll leave that to my future self
-    if (!orderId && !productId) {
-        document.querySelector(".js-order-tracking").innerHTML = createEmptyCartHTML();
+    if (!order || !product) {
+        window.location.href = "orders.html";
         return;
     }
-
-    const order = getOrder(orderId);
-    const product = getProduct(productId);
 
     const productDetails = order.products.find((details) => details.productId === product.id);
 
