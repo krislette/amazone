@@ -16,7 +16,7 @@ function renderTrackingPage() {
     // I could also use some improvements here to make it more robust
     // but I'll leave that to my future self
     if (!order || !product) {
-        window.location.href = "/orders";
+        window.location.href = "/amazone/orders";
         return;
     }
 
@@ -31,7 +31,7 @@ function renderTrackingPage() {
     const deliveredMessage = today < deliveryTime ? "Arriving on" : "Delivered on";
  
     const trackingHTML = `
-        <a class="back-to-orders-link link-primary" href="/orders">
+        <a class="back-to-orders-link link-primary" href="/amazone/orders">
             View all orders
         </a>
 

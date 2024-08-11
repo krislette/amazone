@@ -104,7 +104,7 @@ export function renderPaymentSummary() {
         }
 
         // Go to orders page once order is placed
-        window.location.href = "/orders";
+        window.location.href = "/amazone/orders";
     });
 
     document.querySelector(".js-close-modal-button").addEventListener("click", () => {
