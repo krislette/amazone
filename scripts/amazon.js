@@ -114,17 +114,10 @@ document.querySelectorAll(".js-add-to-cart").forEach((button) => {
     });
 });
 
-// Migrated search code to util/search to share with order
-handleSearch();
 
 document.addEventListener("DOMContentLoaded", () => {
     updateCartQuantity();
-
-    // Check if a search happened and retain input text
-    const search = url.searchParams.get("search");
-    if (search) {
-        document.querySelector(".js-search-bar").value = search;
-    }
+    handleSearch();
 });
 
 //  Line 42: Polymorphism 

@@ -12,4 +12,11 @@ export function handleSearch() {
             window.location.href = `amazon.html?search=${search}`;
         }
     });
+
+    const url = new URL(window.location.href);
+    const search = url.searchParams.get("search");
+
+    if (search) {
+        document.querySelector(".js-search-bar").value = search;
+    }
 }

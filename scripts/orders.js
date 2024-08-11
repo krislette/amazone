@@ -123,15 +123,6 @@ async function renderOrdersPage() {
 
 document.addEventListener("DOMContentLoaded", () => {
     renderOrdersPage();
-    document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
-
-    // Reuse code for handling searches on top
     handleSearch();
-
-    const url = new URL(window.location.href);
-    const search = url.searchParams.get("search");
-
-    if (search) {
-        document.querySelector(".js-search-bar").value = search;
-    }
+    document.querySelector(".js-cart-quantity").innerHTML = calculateCartQuantity();
 });
