@@ -51,7 +51,7 @@ export class Clothing extends Product {
     createExtraInfoHTML() {
         // super.createExtraInfoHTML(); // If you really want to use the parent's method
         return `
-            <a href="${this.sizeChartLink}" target="_blank">
+            <a href="${this.sizeChartLink}" target="_blank" class="link-primary">
                 Size chart
             </a>
         `;
@@ -71,10 +71,10 @@ export class Appliance extends Product {
 
     createExtraInfoHTML() {
         return `
-            <a href="${this.instructionsLink}" target="_blank">
+            <a href="${this.instructionsLink}" target="_blank" class="link-primary">
                 Instructions    
             </a>
-            <a href="${this.warrantyLink}" target="_blank">
+            <a href="${this.warrantyLink}" target="_blank" class="link-primary">
                 Warranty
             </a>
         `;
