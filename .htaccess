@@ -1,0 +1,14 @@
+# This is a way to remove .html extension
+# to make the website's URLs user-friendly
+# to look at. Code credits to an article
+# I found online.
+
+RewriteEngine On
+
+# Remove .html extension from URLs
+RewriteCond %{THE_REQUEST} \s([^.]+)\.html [NC]
+RewriteRule ^ %1 [R=301,L]
+
+# Internally rewrite the URL to the .html file
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^(.*?)/?$ $1.html [L]
