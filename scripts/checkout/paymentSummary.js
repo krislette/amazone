@@ -80,7 +80,7 @@ export function renderPaymentSummary() {
         const overlay = document.querySelector(".overlay");
 
         try {
-            // Show the spinner I added to indicate placed order
+            // Show the spinner to indicate placed order
             overlay.style.display = "flex";
             spinner.style.display = "block";
 
