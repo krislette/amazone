@@ -235,3 +235,11 @@
 .is-editing-quantity .update-quantity-link {
   display: none;
 }
+
+.loading-spinner {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
