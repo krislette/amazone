@@ -74,13 +74,16 @@ input, select, button {
   overflow: hidden;
 }
 
+/* Modified link primary and hover to mimic amazon's anchor links */
 .link-primary {
   color: rgb(1, 124, 182);
   cursor: pointer;
+  text-decoration: none;
 }
 
 .link-primary:hover {
   color: rgb(196, 80, 0);
+  text-decoration: underline;
 }
 
 /* Styles for dropdown selectors. */
