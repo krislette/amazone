@@ -78,3 +78,8 @@ export function updateDeliveryOption(productId, deliveryOptionId) {
     matchingItem.deliveryOptionId = deliveryOptionId;
     saveToStorage();
 }
+
+export function resetCart() {
+    cart = [];
+    saveToStorage();
+}
