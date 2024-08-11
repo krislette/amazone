@@ -70,11 +70,20 @@ export function renderPaymentSummary() {
     document.querySelector(".js-payment-summary").innerHTML = paymentSummaryHTML;
 
     document.querySelector(".js-place-order").addEventListener("click", async () => {
+        if (cart.length === 0) {
+            // Show custom modal if the cart is empty
+            document.querySelector(".js-modal").style.display = "flex";
+            return;
+        }
+
         const spinner = document.querySelector(".js-loading-spinner");
 
         try {
             // Show the spinner I added to indicate placed order
             spinner.style.display = "block";
+
+            // Disable the button so users to avoid double click while processing order
+            document.querySelector(".js-place-order").disabled = true;
 
             const response = await fetch("https://supersimplebackend.dev/orders", {
                 method: "POST",
@@ -97,5 +106,10 @@ export function renderPaymentSummary() {
 
         // Go to orders page once order is placed
         window.location.href = "orders.html";
+    });
+
+    document.querySelector(".js-close-modal-button").addEventListener("click", () => {
+        // Close the modal when the user clicks OK
+        document.querySelector(".js-modal").style.display = "none";
     });
 }
