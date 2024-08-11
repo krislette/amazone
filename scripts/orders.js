@@ -1,6 +1,7 @@
 import { getProduct } from "../data/products.js";
 import { orders } from "../data/orders.js";
 import { formatCurrency } from "./utils/money.js";
+import { createEmptyCartHTML } from "./utils/empty.js";
 import { addToCart, calculateCartQuantity } from "../data/cart.js";
 import dayjs from "https://unpkg.com/dayjs@1.11.10/esm/index.js";
 
@@ -94,7 +95,9 @@ async function renderOrdersPage() {
         return productsListHTML;
     }
 
-    document.querySelector(".js-orders-grid").innerHTML = ordersHTML;
+    document.querySelector(".js-orders-grid").innerHTML = orders.length === 0 
+        ? createEmptyCartHTML()
+        : ordersHTML;
 
     document.querySelectorAll(".js-buy-again").forEach((button) => {
         button.addEventListener("click", () => {

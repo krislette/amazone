@@ -285,34 +285,3 @@
   border-color: rgb(252, 210, 0);
   box-shadow: none;
 }
-
-.empty-cart-container {
-  background-color: #f9f9f9;
-  border: 1px solid rgb(222, 222, 222);
-  border-radius: 4px;
-  padding: 20px;
-}
-
-.empty-cart-icon {
-  width: 200px;
-  height: auto;
-}
-
-.empty-cart-container h2 {
-  font-size: 18.5px;
-  color: #333;
-  margin-bottom: 10px;
-}
-
-.empty-cart-container p {
-  font-size: 16px;
-  color: #666;
-  margin-bottom: 20px;
-}
-
-.button-primary {
-  display: inline-block;
-  padding: 10px 20px;
-  color: rgb(33, 33, 33);
-  text-decoration: none;
-}

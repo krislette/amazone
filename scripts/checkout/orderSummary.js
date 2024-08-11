@@ -2,6 +2,7 @@ import { cart, removeFromCart, updateQuantity, updateDeliveryOption } from "../.
 import { getProduct } from "../../data/products.js";
 import { deliveryOptions, getDeliveryOption, calculateDeliveryDate } from "../../data/deliveryOptions.js"
 import { formatCurrency } from "../utils/money.js";
+import { createEmptyCartHTML } from "../utils/empty.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import { renderCheckoutHeader } from "./checkoutHeader.js";
 
@@ -106,19 +107,10 @@ export function renderOrderSummary() {
         return html;
     }
 
-    // Created empty cart indicator
-    const emptyCartHTML = `
-        <div class="empty-cart-container">
-            <img src="https://m.media-amazon.com/images/G/01/cart/empty/kettle-desaturated._CB445243794_.svg" 
-                alt="Empty Cart Icon" class="empty-cart-icon">
-            <h2>Your Amazone Cart is empty</h2>
-            <p>It looks like you haven't added any items to your cart yet. Browse our products and add something you like.</p>
-            <a href="amazon.html" class="link-primary">Shop today's deals</a>
-        </div>
-    `;
-
     // Check the HTML to display based on the cart's status
-    document.querySelector(".js-order-summary").innerHTML = cart.length === 0 ? emptyCartHTML:  cartSummaryHTML;
+    document.querySelector(".js-order-summary").innerHTML = cart.length === 0 
+        ? createEmptyCartHTML() 
+        : cartSummaryHTML;
 
     document.querySelectorAll(".js-delete-link").forEach((link) => {
         link.addEventListener("click", () => {
